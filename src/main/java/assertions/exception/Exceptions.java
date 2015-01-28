@@ -1,13 +1,13 @@
 package assertions.exception;
 
-import exceptions.ExpectationMismatch;
 import exceptions.ExceptionNotThrown;
-import expectations.exception.ExceptionExpectation;
+import exceptions.ExpectationMismatch;
+import expectations.exception.Expectation;
 import expectations.exception.RunnableWithException;
 
 public class Exceptions {
     public static void assertThrows(RunnableWithException fn, Class exceptionClass) throws ExceptionNotThrown, ExpectationMismatch {
-        ExceptionExpectation expectation = new ExceptionExpectation(fn);
+        Expectation expectation = new Expectation(fn);
         expectation.toThrow(exceptionClass);
     }
 }
