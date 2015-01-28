@@ -6,7 +6,7 @@ import expectations.exception.ExceptionExpectation;
 import expectations.exception.RunnableWithException;
 import org.junit.Test;
 
-import static expectations.exception.Expect.expect;
+import static expectations.exception.ExceptionExpectation.expect;
 import static org.junit.Assert.assertEquals;
 
 public class ExceptionExpectationTest {
@@ -24,9 +24,7 @@ public class ExceptionExpectationTest {
         String expectationMessage = "Hello World";
         String actualMessage = "Bonjour le monde";
         Exception exception = new Exception(actualMessage);
-        RunnableWithException fn = () -> {
-            new ExceptionExpectation(exception).withMessage(expectationMessage);
-        };
+        RunnableWithException fn = () -> new ExceptionExpectation(exception).withMessage(expectationMessage);
         expect(fn).toThrow(ExpectationMismatch.class);
     }
 
@@ -39,7 +37,7 @@ public class ExceptionExpectationTest {
         try {
             new ExceptionExpectation(exception).withMessage(expectedMessage);
         } catch (ExpectationMismatch e) {
-            assertEquals(String.format("Expected: %s, Actual %s", expectedMessage, actualMessage), e.getMessage());
+            assertEquals(String.format("Expected: %s, Actual: %s", expectedMessage, actualMessage), e.getMessage());
         }
     }
 }

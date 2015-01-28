@@ -2,13 +2,12 @@ package expectations;
 
 import exceptions.ExpectationMismatch;
 import exceptions.ExceptionNotThrown;
-import expectations.exception.RunnableWithException;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.EmptyStackException;
 
-import static expectations.exception.Expect.expect;
+import static expectations.exception.ExceptionExpectation.expect;
 import static org.junit.Assert.assertEquals;
 
 public class ExceptionException {
@@ -40,7 +39,7 @@ public class ExceptionException {
                 throw new Exception();
             }).toThrow(EmptyStackException.class);
         } catch (ExpectationMismatch e) {
-            assertEquals(e.getMessage(), String.format("Expected: %s, Actual %s", EmptyStackException.class, Exception.class));
+            assertEquals(e.getMessage(), String.format("Expected: %s, Actual: %s", EmptyStackException.class, Exception.class));
         }
     }
 }

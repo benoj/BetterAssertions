@@ -38,7 +38,7 @@ public class AssertThrows {
 
             assertThrows(fn,EmptyStackException.class);
         }catch(ExpectationMismatch e){
-            assertEquals(e.getMessage(), String.format("Expected: %s, Actual %s", EmptyStackException.class, Exception.class));
+            assertEquals(e.getMessage(), String.format("Expected: %s, Actual: %s", EmptyStackException.class, Exception.class));
         } catch (ExceptionNotThrown exceptionNotThrown) {
             assertEquals(2,3);
         }
