@@ -1,7 +1,7 @@
 package assertion.exceptions;
 
 import expectations.exception.RunnableWithException;
-import exceptions.ExceptionMismatch;
+import exceptions.ExpectationMismatch;
 import exceptions.ExceptionNotThrown;
 import org.junit.Test;
 
@@ -15,7 +15,8 @@ public class AssertThrows {
 
     @Test(expected = ExceptionNotThrown.class)
     public void whenNoExceptionThrownThenTestFailsWithExceptionNotThrown() throws Exception {
-        assertThrows(()-> { int x = 1+1; },Exception.class);
+        assertThrows(()-> {
+        },Exception.class);
     }
 
     @Test
@@ -23,7 +24,7 @@ public class AssertThrows {
         assertThrows(() -> { throw new IOException();},IOException.class);
     }
 
-    @Test(expected = ExceptionMismatch.class)
+    @Test(expected = ExpectationMismatch.class)
     public void whenExceptionThrownAndExceptionDoesNotMatchThenTestFailsWithExceptionDoesntMatch() throws Exception {
         assertThrows(() -> { throw new IOException();},Exception.class);
     }
@@ -31,15 +32,12 @@ public class AssertThrows {
     @Test
     public void whenExceptionMismatchThrownMessageIsMeaningfull(){
         try {
-            RunnableWithException fn = new RunnableWithException() {
-                @Override
-                public void run() throws Exception {
-                    throw new Exception();
-                }
+            RunnableWithException fn = () -> {
+                throw new Exception();
             };
 
             assertThrows(fn,EmptyStackException.class);
-        }catch(ExceptionMismatch e){
+        }catch(ExpectationMismatch e){
             assertEquals(e.getMessage(), String.format("Expected: %s, Actual %s", EmptyStackException.class, Exception.class));
         } catch (ExceptionNotThrown exceptionNotThrown) {
             assertEquals(2,3);
