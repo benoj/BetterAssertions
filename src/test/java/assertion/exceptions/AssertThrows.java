@@ -1,6 +1,6 @@
 package assertion.exceptions;
 
-import assertions.exception.RunnableWithException;
+import expectations.exception.RunnableWithException;
 import exceptions.ExceptionMismatch;
 import exceptions.ExceptionNotThrown;
 import org.junit.Test;
@@ -17,7 +17,6 @@ public class AssertThrows {
     public void whenNoExceptionThrownThenTestFailsWithExceptionNotThrown() throws Exception {
         assertThrows(()-> { int x = 1+1; },Exception.class);
     }
-
 
     @Test
     public void whenExceptionThrownAndExceptionMatchesThenTestPasses() throws Exception {
