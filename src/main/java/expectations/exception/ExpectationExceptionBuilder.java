@@ -3,11 +3,11 @@ package expectations.exception;
 import exceptions.ExceptionNotThrown;
 import exceptions.ExpectationMismatch;
 
-public class Expectation {
+public class ExpectationExceptionBuilder {
 
     private Exception exception = null;
 
-    public Expectation(RunnableWithException fn) {
+    public ExpectationExceptionBuilder(RunnableWithException fn) {
         try {
             fn.run();
         } catch (Exception e) {

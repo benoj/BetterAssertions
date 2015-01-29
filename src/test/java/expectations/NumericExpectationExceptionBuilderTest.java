@@ -3,11 +3,12 @@ package expectations;
 import exceptions.ComparisonMismatch;
 import exceptions.ExpectationMismatch;
 import expectations.exception.RunnableWithException;
+import expectations.numeric.NumericExpectation;
 import org.junit.Test;
 
-import static expectations.exception.ExceptionExpectation.expect;
+import static expectations.ExpectationFactory.expect;
 
-public class NumericExpectationTest {
+public class NumericExpectationExceptionBuilderTest {
     @Test
     public void expectToEqualWithEqualIntegersToPass() throws Exception {
         int value = 1;

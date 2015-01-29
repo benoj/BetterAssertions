@@ -10,14 +10,11 @@ public class ExceptionExpectation {
         this.exception = exception;
     }
 
-    public static Expectation expect(RunnableWithException fn){
-        return new Expectation(fn);
-    }
-
     public void withMessage(String expectedMessage) throws ExpectationMismatch {
         String actualMessage = exception.getMessage();
         if(!actualMessage.equals(expectedMessage)){
             throw new ExpectationMismatch(actualMessage,expectedMessage);
         }
     }
+
 }

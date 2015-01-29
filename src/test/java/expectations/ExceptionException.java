@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.EmptyStackException;
 
-import static expectations.exception.ExceptionExpectation.expect;
+import static expectations.ExpectationFactory.expect;
 import static org.junit.Assert.assertEquals;
 
 public class ExceptionException {

@@ -6,10 +6,10 @@ import expectations.exception.ExceptionExpectation;
 import expectations.exception.RunnableWithException;
 import org.junit.Test;
 
-import static expectations.exception.ExceptionExpectation.expect;
+import static expectations.ExpectationFactory.expect;
 import static org.junit.Assert.assertEquals;
 
-public class ExceptionExpectationTest {
+public class ExceptionExpectationTests {
 
 
     @Test

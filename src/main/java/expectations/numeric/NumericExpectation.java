@@ -1,4 +1,4 @@
-package expectations;
+package expectations.numeric;
 
 import exceptions.ComparisonMismatch;
 import exceptions.ExpectationMismatch;
