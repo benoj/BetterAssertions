@@ -45,9 +45,21 @@ public class NumericExpectationTest {
     }
 
     @Test
+    public void expectIsGreaterThanWithEqualNumberToFail() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(1.0).toBeGreaterThan(1.0);
+        expect(fn).toThrow(ComparisonMismatch.class).withMessage("Expected: 1.0 > 1.0");
+    }
+
+    @Test
     public void expectIsLessThanWithSmallerNumberToFail() throws Exception {
         RunnableWithException fn = () -> new NumericExpectation<>(2.0).toBeLessThan(1.0);
         expect(fn).toThrow(ComparisonMismatch.class).withMessage("Expected: 2.0 < 1.0");
+    }
+
+    @Test
+    public void expectIsLessThanWithEqualNumberToFail() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(2.0).toBeLessThan(2.0);
+        expect(fn).toThrow(ComparisonMismatch.class).withMessage("Expected: 2.0 < 2.0");
     }
 
     @Test
@@ -65,6 +77,42 @@ public class NumericExpectationTest {
     @Test
     public void isGreaterThanAndIsChainable() throws Exception {
         RunnableWithException fn = () -> new NumericExpectation<>(0).toBeGreaterThan(-1).toBeLessThan(1);
+        fn.run();
+    }
+
+    @Test
+    public void expectToBeGreaterThanOrEqualToWithEqualNumberToPass() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(1).toBeGreaterThanOrEqualTo(1);
+        fn.run();
+    }
+
+    @Test
+    public void expectToBeGreaterThanOrEqualToWithBiggerNumberToFail() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(1.0).toBeGreaterThanOrEqualTo(2.0);
+        expect(fn).toThrow(ComparisonMismatch.class).withMessage("Expected: 1.0 >= 2.0");
+    }
+
+    @Test
+    public void expectToBeGreaterThanOrEqualToWithSmallerNumberToPass() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(2).toBeGreaterThanOrEqualTo(1);
+        fn.run();
+    }
+
+    @Test
+    public void expectToBeLessThanOrEqualToWithEqualNumberToPass() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(1).toBeLessThanOrEqualTo(1);
+        fn.run();
+    }
+
+    @Test
+    public void expectToBeLessThanOrEqualToWithSmallerNumberToFail() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(1.0).toBeLessThanOrEqualTo(0.0);
+        expect(fn).toThrow(ComparisonMismatch.class).withMessage("Expected: 1.0 <= 0.0");
+    }
+
+    @Test
+    public void expectToBeSmallerThanOrEqualToWithBiggerNumberToPass() throws Exception {
+        RunnableWithException fn = () -> new NumericExpectation<>(2).toBeLessThanOrEqualTo(3);
         fn.run();
     }
 }

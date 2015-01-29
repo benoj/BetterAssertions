@@ -17,16 +17,28 @@ public class NumericExpectation<T extends Number & Comparable> {
     }
 
     public NumericExpectation<T> toBeGreaterThan(T other) throws ComparisonMismatch {
-        if(actual.compareTo(other) < 0 ){
+        if(actual.compareTo(other) <= 0 ){
             throw new ComparisonMismatch(actual,other,">");
         }
         return this;
     }
 
     public NumericExpectation<T> toBeLessThan(T other) throws ComparisonMismatch {
-        if(actual.compareTo(other) > 0 ){
+        if(actual.compareTo(other) >= 0 ){
             throw new ComparisonMismatch(actual,other,"<");
         }
         return this;
+    }
+
+    public void toBeGreaterThanOrEqualTo(T other) throws ComparisonMismatch {
+        if(actual.compareTo(other) < 0){
+            throw new ComparisonMismatch(actual,other,">=");
+        }
+    }
+
+    public void toBeLessThanOrEqualTo(T other) throws ComparisonMismatch {
+        if(actual.compareTo(other) > 0){
+            throw new ComparisonMismatch(actual,other,"<=");
+        }
     }
 }
