@@ -2,10 +2,7 @@ package expectations.exception;
 
 import exceptions.ExpectationMismatch;
 
-import java.util.Objects;
-
 public class ExceptionExpectation {
-
 
     private Exception exception;
 
@@ -19,7 +16,7 @@ public class ExceptionExpectation {
 
     public void withMessage(String expectedMessage) throws ExpectationMismatch {
         String actualMessage = exception.getMessage();
-        if(!Objects.equals(actualMessage, expectedMessage)){
+        if(!actualMessage.equals(expectedMessage)){
             throw new ExpectationMismatch(actualMessage,expectedMessage);
         }
     }
