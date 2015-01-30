@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
 
-public class NumericExpectationTests {
+public class NumericExpectationTest {
     @Test
     public void expectToEqualWithEqualIntegersToPass() throws Exception {
         int value = 1;

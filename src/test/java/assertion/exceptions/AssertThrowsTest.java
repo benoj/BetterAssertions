@@ -11,7 +11,7 @@ import java.util.EmptyStackException;
 import static assertions.exception.Exceptions.assertThrows;
 import static org.junit.Assert.assertEquals;
 
-public class AssertThrows {
+public class AssertThrowsTest {
 
     @Test(expected = ExceptionNotThrown.class)
     public void whenNoExceptionThrownThenTestFailsWithExceptionNotThrown() throws Exception {
