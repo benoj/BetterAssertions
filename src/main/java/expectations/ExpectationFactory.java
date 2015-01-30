@@ -12,6 +12,4 @@ public class ExpectationFactory {
     public static  NumericExpectation expect(Number number){
         return new NumericExpectation<>(number);
     }
-
-
 }
