@@ -1,5 +1,6 @@
 package expectations.numeric;
 
+import exceptions.BoundFailure;
 import exceptions.ComparisonMismatch;
 import exceptions.ExpectationMismatch;
 
@@ -45,4 +46,13 @@ public class NumericExpectation<T extends Comparable<Number>> {
             throw new ComparisonMismatch((Number) actual,other,"<=");
         }
     }
+
+    public void toBeBetween(Number boundA, Number boundB) throws BoundFailure {
+        Bound bound = new Bound(boundA,boundB);
+        if(actual.compareTo(bound.getLowerBound()) < 0 || actual.compareTo(bound.getUpperBound()) > 0){
+            throw new BoundFailure(actual,bound);
+        }
+    }
 }
+
+

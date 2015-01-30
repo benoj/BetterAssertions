@@ -1,5 +1,6 @@
 package expectations.numeric;
 
+import exceptions.BoundFailure;
 import exceptions.ComparisonMismatch;
 import exceptions.ExpectationMismatch;
 import expectations.exception.RunnableWithException;
@@ -106,5 +107,40 @@ public class NumericExpectationTest {
     @Test
     public void expectToBeSmallerThanOrEqualToWithBiggerNumberToPass() throws Exception {
         expect(2).toBeLessThanOrEqualTo(3);
+    }
+
+
+    @Test
+    public void expectToBeBetweenWithNumberInsideRangeToPass() throws Exception {
+        expect(2).toBeBetween(1, 3);
+    }
+
+    @Test
+    public void expectToBeBetweenWithNumberOnBoundAToPass() throws Exception {
+        expect(2).toBeBetween(2, 3);
+    }
+    
+    @Test
+    public void expectToBeBetweenWithNumberOnBoundBToPass() throws Exception {
+        expect(3.1).toBeBetween(3.0, 3.1);
+    }
+
+    @Test
+    public void expectToBeBetweenWithNumberBelowBoundToFail() throws Exception {
+        RunnableWithException test = () -> expect(3.1).toBeBetween(3.2,3.3);
+        expect(test).toThrow(BoundFailure.class).withMessage("Expected: 3.1 in (3.2,3.3)");
+    }
+    
+    @Test
+    public void expectToBeBetweenWithNumberAboveBoundToFail() throws Exception {
+        RunnableWithException test = () -> expect(6).toBeBetween(4,5);
+        expect(test).toThrow(BoundFailure.class).withMessage("Expected: 6 in (4,5)");
+    }
+    
+
+    
+    @Test
+    public void expectToBeBetweenWithNegativeBoundryAndNumberInBoundToPass() throws Exception {
+        expect(1).toBeBetween(1, -1);
     }
 }
