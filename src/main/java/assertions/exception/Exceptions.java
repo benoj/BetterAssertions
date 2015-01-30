@@ -1,7 +1,7 @@
 package assertions.exception;
 
-import exceptions.ExceptionNotThrown;
-import exceptions.ExpectationMismatch;
+import expectations.exception.failures.ExceptionNotThrown;
+import expectations.exception.failures.ExpectationMismatch;
 import expectations.exception.ExpectationExceptionBuilder;
 import expectations.exception.RunnableWithException;
 

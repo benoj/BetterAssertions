@@ -1,6 +1,6 @@
 package expectations.exception;
 
-import exceptions.ExpectationMismatch;
+import expectations.exception.failures.ExpectationMismatch;
 
 public class ExceptionExpectation {
 

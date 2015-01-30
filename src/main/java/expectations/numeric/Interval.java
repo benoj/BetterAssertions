@@ -1,10 +1,11 @@
 package expectations.numeric;
 
-public class Bound {
+public class Interval {
     private  Number lowerBound ;
     private  Number upperBound;
 
-    public Bound(Number boundA, Number boundB) {
+    
+    public Interval(Number boundA, Number boundB) {
         Comparable<Number> comparableBoundA = (Comparable<Number>) boundA;
         if(comparableBoundA.compareTo(boundB) < 0){
             lowerBound = boundA;

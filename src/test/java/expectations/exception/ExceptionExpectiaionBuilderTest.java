@@ -1,7 +1,7 @@
 package expectations.exception;
 
-import exceptions.ExpectationMismatch;
-import exceptions.ExceptionNotThrown;
+import expectations.exception.failures.ExpectationMismatch;
+import expectations.exception.failures.ExceptionNotThrown;
 import org.junit.Test;
 
 import java.io.IOException;

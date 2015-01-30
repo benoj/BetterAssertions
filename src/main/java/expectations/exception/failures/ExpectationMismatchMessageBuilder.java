@@ -1,4 +1,4 @@
-package exceptions;
+package expectations.exception.failures;
 
 class ExpectationMismatchMessageBuilder {
     public static String build(Object actual, Object expected){

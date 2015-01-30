@@ -1,7 +1,7 @@
 package expectations.exception;
 
-import exceptions.ExceptionNotThrown;
-import exceptions.ExpectationMismatch;
+import expectations.exception.failures.ExceptionNotThrown;
+import expectations.exception.failures.ExpectationMismatch;
 import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
