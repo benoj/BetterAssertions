@@ -1,4 +1,4 @@
-package expectations;
+package expectations.exception;
 
 import exceptions.ExpectationMismatch;
 import exceptions.ExceptionNotThrown;
@@ -10,34 +10,36 @@ import java.util.EmptyStackException;
 import static expectations.ExpectationFactory.expect;
 import static org.junit.Assert.assertEquals;
 
-public class ExceptionException {
+public class ExceptionExpectiaionBuilderTests {
 
     @Test
     public void expectToThrowPassesWhenExpectationMatches() throws Exception {
-        expect(() -> {
+        RunnableWithException runnable = () -> {
             throw new Exception();
-        }).toThrow(Exception.class);
+        };
+        expect(runnable).toThrow(Exception.class);
     }
 
     @Test(expected = ExceptionNotThrown.class)
     public void expectToThrowFailsWithExceptionNotThrownWhenNoException() throws Exception {
-        expect(() -> {
-        }).toThrow(Exception.class);
+        expect(() -> {}).toThrow(Exception.class);
     }
 
     @Test(expected = ExpectationMismatch.class)
     public void expectToThrowFailsWithExceptionMismatchWhenExpectedExceptionIsNotEqual() throws Exception {
-        expect(() -> {
+        RunnableWithException runnable = () -> {
             throw new IOException();
-        }).toThrow(Exception.class);
+        };
+        expect(runnable).toThrow(Exception.class);
     }
 
     @Test
     public void expectToThrowExceptionMismatchShowsTheExpectedAndActualExceptionTypes() throws ExceptionNotThrown {
         try {
-            expect(() -> {
+            RunnableWithException runnable = () -> {
                 throw new Exception();
-            }).toThrow(EmptyStackException.class);
+            };
+            expect(runnable).toThrow(EmptyStackException.class);
         } catch (ExpectationMismatch e) {
             assertEquals(e.getMessage(), String.format("Expected: %s, Actual: %s", EmptyStackException.class, Exception.class));
         }

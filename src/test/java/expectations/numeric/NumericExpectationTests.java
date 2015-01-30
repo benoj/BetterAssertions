@@ -1,30 +1,29 @@
-package expectations;
+package expectations.numeric;
 
 import exceptions.ComparisonMismatch;
 import exceptions.ExpectationMismatch;
 import expectations.exception.RunnableWithException;
-import expectations.numeric.NumericExpectation;
 import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
 
-public class NumericExpectationExceptionBuilderTest {
+public class NumericExpectationTests {
     @Test
     public void expectToEqualWithEqualIntegersToPass() throws Exception {
         int value = 1;
-        new NumericExpectation<>(value).toEqual(value);
+        expect(value).toEqual(value);
     }
 
     @Test
     public void expectToEqualWithNonEqualIntegersToFail() throws Exception {
-        RunnableWithException fn = () -> new NumericExpectation<>(1).toEqual(2);
-        expect(fn).toThrow(ExpectationMismatch.class).withMessage("Expected: 2, Actual: 1");
+        RunnableWithException test = () -> expect(1).toEqual(2);
+        expect(test).toThrow(ExpectationMismatch.class).withMessage("Expected: 2, Actual: 1");
     }
 
     @Test
     public void expectToEqualWithEqualDoublesToPass() throws Exception {
         double value = 1.0;
-        new NumericExpectation<>(value).toEqual(value);
+        expect(value).toEqual(value);
     }
 
     @Test
