@@ -1,8 +1,11 @@
 package expectations.string.failures;
 
-public class ContainsFailure extends Exception {
+public class ContainsFailure extends StringExpectationFailure{
+    
+    private static final String FAILURE_CONDITION = "contain";
+    
     public ContainsFailure(String actual, String expected) {
-        super(String.format("Expected: '%s' to contain '%s'", actual, expected));
+        super(actual,expected, FAILURE_CONDITION);
 
     }
 }

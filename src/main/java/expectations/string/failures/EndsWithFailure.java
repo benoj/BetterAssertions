@@ -1,7 +1,10 @@
 package expectations.string.failures;
 
-public class EndsWithFailure extends Exception{
+public class EndsWithFailure  extends StringExpectationFailure{
+
+    public static final String FAILURE_CONDITION = "end with";
+
     public EndsWithFailure(String actual, String expected) {
-        super(String.format("Expected: '%s' to end with '%s'", actual, expected));
+        super(actual,expected, FAILURE_CONDITION);
     }
 }

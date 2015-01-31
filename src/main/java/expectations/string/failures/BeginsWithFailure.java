@@ -1,7 +1,9 @@
 package expectations.string.failures;
 
-public class BeginsWithFailure extends Exception{
+public class BeginsWithFailure extends StringExpectationFailure{
+    private static final String FAILURE_CONDITION = "begin with";
     public BeginsWithFailure(String actual, String expected) {
-        super(String.format("Expected: '%s' to begin with '%s'", actual, expected));
+        super(actual,expected, FAILURE_CONDITION);
     }
+    
 }
