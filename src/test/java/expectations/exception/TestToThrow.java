@@ -10,7 +10,7 @@ import java.util.EmptyStackException;
 import static expectations.ExpectationFactory.expect;
 import static org.junit.Assert.assertEquals;
 
-public class ExceptionExpectiaionBuilderTest {
+public class TestToThrow {
 
     @Test
     public void expectToThrowPassesWhenExpectationMatches() throws Exception {

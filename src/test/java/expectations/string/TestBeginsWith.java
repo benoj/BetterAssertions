@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
 
-public class StringExpectationTest {
+public class TestBeginsWith {
 
     private final String actual = "Hello World!";
 

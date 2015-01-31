@@ -7,7 +7,7 @@ import org.junit.Test;
 import static expectations.ExpectationFactory.expect;
 import static org.junit.Assert.assertEquals;
 
-public class ExceptionExpectationTest {
+public class TestWithMessage {
 
     private final String exceptionMessage = "Hello World";
     private final RunnableWithException fn = () -> { throw new Exception(exceptionMessage);};
