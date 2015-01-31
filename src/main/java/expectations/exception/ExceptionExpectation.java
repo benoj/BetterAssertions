@@ -12,7 +12,7 @@ public class ExceptionExpectation {
 
     public void withMessage(String expectedMessage) throws ExpectationMismatch {
         String actualMessage = exception.getMessage();
-        if(!actualMessage.equals(expectedMessage)){
+        if(!expectedMessage.equals(actualMessage)){
             throw new ExpectationMismatch(actualMessage,expectedMessage);
         }
     }
