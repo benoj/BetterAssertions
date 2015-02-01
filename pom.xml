@@ -44,6 +44,8 @@
                     <mutators>
                         <mutator>ALL</mutator>
                     </mutators>
+                    <timestampedReports>false</timestampedReports>
+                    <mutationThreshold>95</mutationThreshold>
                 </configuration>
             </plugin>
         </plugins>
