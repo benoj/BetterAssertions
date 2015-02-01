@@ -41,6 +41,9 @@
                     <targetTests>
                         <param>expectations.*</param>
                     </targetTests>
+                    <mutators>
+                        <mutator>ALL</mutator>
+                    </mutators>
                 </configuration>
             </plugin>
         </plugins>
