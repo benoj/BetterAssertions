@@ -2,6 +2,6 @@ package expectations.exception.failures;
 
 class ExpectationMismatchMessageBuilder {
     public static String build(Object actual, Object expected){
-        return String.format("Expected: %s, Actual: %s", expected, actual);
+        return "Expected: " + expected + ", Actual: " + actual;
     }
 }
