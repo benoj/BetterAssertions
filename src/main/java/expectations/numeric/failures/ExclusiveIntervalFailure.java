@@ -5,6 +5,6 @@ import expectations.numeric.Interval;
 public class ExclusiveIntervalFailure extends Exception {
 
     public ExclusiveIntervalFailure(Comparable<Number> actual, Interval interval) {
-        super(String.format("Expected: %s in [%s,%s]",actual, interval.getLowerBound(), interval.getUpperBound()));
+        super(IntervalExceptionMessageBuilder.build((Number) actual, interval, IntervalType.EXCLUSIVE));
     }
 }
