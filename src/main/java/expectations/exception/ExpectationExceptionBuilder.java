@@ -5,7 +5,7 @@ import expectations.exception.failures.ExpectationMismatch;
 
 public class ExpectationExceptionBuilder {
 
-    private Exception exception = null;
+    private Exception exception;
 
     public ExpectationExceptionBuilder(RunnableWithException fn) {
         try {

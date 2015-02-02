@@ -6,7 +6,7 @@ import expectations.numeric.failures.ExclusiveIntervalFailure;
 
 
 public class NumericExpectation<T extends Comparable<Number>> {
-    private T actual = null;
+    private T actual;
 
 
     @SuppressWarnings("unchecked")
