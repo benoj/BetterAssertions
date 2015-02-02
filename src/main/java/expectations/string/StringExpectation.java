@@ -4,10 +4,8 @@ import expectations.string.failures.BeginsWithFailure;
 import expectations.string.failures.ContainsFailure;
 import expectations.string.failures.EndsWithFailure;
 import expectations.string.failures.MalformedXmlFailure;
-import org.jdom.Document;
+import expectations.xml.XMLExpectation;
 import org.jdom.JDOMException;
-import org.jdom.input.DOMBuilder;
-import org.jdom.input.SAXBuilder;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -39,13 +37,13 @@ public class StringExpectation {
     }
 
     public void isXml() throws MalformedXmlFailure {
-        SAXBuilder builder = new SAXBuilder();
-        InputStream stream = new ByteArrayInputStream(actual.getBytes());
+        InputStream xmlStream = new ByteArrayInputStream(actual.getBytes());
         try {
-            Document document = (Document) builder.build(stream);
+            new XMLExpectation(xmlStream);
         } catch (JDOMException e) {
            throw new MalformedXmlFailure();
-        } catch (IOException ignored) {
-        }
+        } catch (IOException ignored) {}
     }
 }
+
+
