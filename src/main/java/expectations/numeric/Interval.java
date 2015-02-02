@@ -7,7 +7,7 @@ public class Interval {
     
     public Interval(Number boundA, Number boundB) {
         Comparable<Number> comparableBoundA = (Comparable<Number>) boundA;
-        if(comparableBoundA.compareTo(boundB) < 0){
+        if(comparableBoundA.compareTo(boundB) == -1){
             lowerBound = boundA;
             upperBound = boundB;
         }else{
