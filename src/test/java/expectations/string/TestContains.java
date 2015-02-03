@@ -1,6 +1,6 @@
 package expectations.string;
 
-import expectations.exception.TestWithExceptiohn;
+import expectations.exception.TestWithException;
 import expectations.string.failures.ContainsFailure;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class TestContains {
     @Test
     public void expectContainsWhenStringInNotContainedToFail() throws Exception {
         String expected = "not";
-        TestWithExceptiohn test = () -> expect(actual).contains(expected);
+        TestWithException test = () -> expect(actual).contains(expected);
         String expectedFailureMessage = String.format("Expected: '%s' to contain '%s'", actual,expected);
         expect(test).toThrow(ContainsFailure.class).withMessage(expectedFailureMessage);
     }

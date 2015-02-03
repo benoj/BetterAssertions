@@ -1,5 +1,5 @@
 package expectations.exception;
 
-public interface TestWithExceptiohn {
+public interface TestWithException {
     public void run() throws Exception;
 }

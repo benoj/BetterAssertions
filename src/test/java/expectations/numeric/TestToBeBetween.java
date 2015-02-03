@@ -1,6 +1,6 @@
 package expectations.numeric;
 
-import expectations.exception.TestWithExceptiohn;
+import expectations.exception.TestWithException;
 import expectations.numeric.failures.ExclusiveIntervalFailure;
 import org.junit.Test;
 
@@ -14,25 +14,25 @@ public class TestToBeBetween {
 
     @Test
     public void expectToBeBetweenNumberOnIntervalAToFail() throws Exception {
-        TestWithExceptiohn test = () -> expect(2).toBeBetween(2, 3);
+        TestWithException test = () -> expect(2).toBeBetween(2, 3);
         expect(test).toThrow(ExclusiveIntervalFailure.class).withMessage("Expected: 2 in [2,3]");
     }
 
     @Test
     public void expectToBeBetweenWithNumberOnIntervalBToFail() throws Exception {
-        TestWithExceptiohn test = () -> expect(3.5).toBeBetween(3.0, 3.5);
+        TestWithException test = () -> expect(3.5).toBeBetween(3.0, 3.5);
         expect(test).toThrow(ExclusiveIntervalFailure.class).withMessage("Expected: 3.5 in [3.0,3.5]");
     }
 
     @Test
     public void expectToBeBetweenWithNumberBelowIntervalToFail() throws Exception {
-        TestWithExceptiohn test = () -> expect(3.1).toBeBetween(3.2, 3.3);
+        TestWithException test = () -> expect(3.1).toBeBetween(3.2, 3.3);
         expect(test).toThrow(ExclusiveIntervalFailure.class).withMessage("Expected: 3.1 in [3.2,3.3]");
     }
 
     @Test
     public void expectToBeBetweenWithNumberAboveIntervalToFail() throws Exception {
-        TestWithExceptiohn test = () -> expect(6).toBeBetween(4, 5);
+        TestWithException test = () -> expect(6).toBeBetween(4, 5);
         expect(test).toThrow(ExclusiveIntervalFailure.class).withMessage("Expected: 6 in [4,5]");
     }
 

@@ -14,7 +14,7 @@ public class TestToThrow {
 
     @Test
     public void expectToThrowPassesWhenExpectationMatches() throws Exception {
-        TestWithExceptiohn runnable = () -> {
+        TestWithException runnable = () -> {
             throw new Exception();
         };
         expect(runnable).toThrow(Exception.class);
@@ -27,7 +27,7 @@ public class TestToThrow {
 
     @Test(expected = ExpectationMismatch.class)
     public void expectToThrowFailsWithExceptionMismatchWhenExpectedExceptionIsNotEqual() throws Exception {
-        TestWithExceptiohn runnable = () -> {
+        TestWithException runnable = () -> {
             throw new IOException();
         };
         expect(runnable).toThrow(Exception.class);
@@ -36,7 +36,7 @@ public class TestToThrow {
     @Test
     public void expectToThrowExceptionMismatchShowsTheExpectedAndActualExceptionTypes() throws ExceptionNotThrown {
         try {
-            TestWithExceptiohn runnable = () -> {
+            TestWithException runnable = () -> {
                 throw new Exception();
             };
             expect(runnable).toThrow(EmptyStackException.class);

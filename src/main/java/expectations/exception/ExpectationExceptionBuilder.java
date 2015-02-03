@@ -7,7 +7,7 @@ public class ExpectationExceptionBuilder {
 
     private Exception exception;
 
-    public ExpectationExceptionBuilder(TestWithExceptiohn fn) {
+    public ExpectationExceptionBuilder(TestWithException fn) {
         try {
             fn.run();
         } catch (Exception e) {

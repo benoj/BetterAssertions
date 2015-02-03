@@ -1,6 +1,6 @@
 package expectations.numeric;
 
-import expectations.exception.TestWithExceptiohn;
+import expectations.exception.TestWithException;
 import expectations.numeric.failures.GreaterThanOrEqualComparisonFailure;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class TestToBeGreaterThanOrEqualTo {
 
     @Test
     public void expectToBeGreaterThanOrEqualToWithBiggerNumberToFail() throws Exception {
-        TestWithExceptiohn test = () -> expect(1.0).toBeGreaterThanOrEqualTo(2.0);
+        TestWithException test = () -> expect(1.0).toBeGreaterThanOrEqualTo(2.0);
         expect(test).toThrow(GreaterThanOrEqualComparisonFailure.class).withMessage("Expected: 1.0 >= 2.0");
     }
 
