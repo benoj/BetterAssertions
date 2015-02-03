@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <build>
-        <defaultGoal>compile</defaultGoal>
+        <defaultGoal>compile test org.pitest:pitest-maven:mutationCoverage</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
