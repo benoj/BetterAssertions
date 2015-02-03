@@ -22,12 +22,12 @@ public class XMLExpectation {
         } catch (IOException ignored) {}
     }
 
-    public void withField(String fieldName) throws NoXmlElementFailure {
+    public FieldsExpectation withField(String fieldName) throws NoXmlElementFailure {
         ElementFilter filter = new ElementFilter(fieldName);
         Iterator elementIterator = xml.getDescendants(filter);
         if(!elementIterator.hasNext()){
             throw new NoXmlElementFailure(fieldName);
         }
-
+        return new FieldsExpectation(fieldName,elementIterator);
     }
 }
