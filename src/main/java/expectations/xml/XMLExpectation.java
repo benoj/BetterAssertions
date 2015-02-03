@@ -12,10 +12,10 @@ import java.io.InputStream;
 import java.util.Iterator;
 
 public class XMLExpectation {
-    private final SAXBuilder builder = new SAXBuilder();
     private Element xml;
     public XMLExpectation(InputStream xml) throws MalformedXmlFailure {
         try {
+            SAXBuilder builder = new SAXBuilder();
             this.xml = builder.build(xml).getRootElement();
         } catch (JDOMException e) {
             throw new MalformedXmlFailure();
