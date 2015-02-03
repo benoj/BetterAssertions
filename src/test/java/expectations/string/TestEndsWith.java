@@ -1,6 +1,6 @@
 package expectations.string;
 
-import expectations.exception.RunnableWithException;
+import expectations.exception.TestWithExceptiohn;
 import expectations.string.failures.EndsWithFailure;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class TestEndsWith {
     @Test
     public void expectEndsWithWithoutEndingCharactersToFail() throws Exception {
         String expected = "le Monde!";
-        RunnableWithException test = () -> expect(actual).endsWith(expected);
+        TestWithExceptiohn test = () -> expect(actual).endsWith(expected);
         String expectedFailureMessage = String.format("Expected: '%s' to end with '%s'", actual,expected);
         expect(test).toThrow(EndsWithFailure.class).withMessage(expectedFailureMessage);
     }

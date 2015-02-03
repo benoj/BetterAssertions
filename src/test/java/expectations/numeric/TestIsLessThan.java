@@ -1,7 +1,7 @@
 package expectations.numeric;
 
-import expectations.exception.RunnableWithException;
-import expectations.numeric.failures.ComparisonMismatch;
+import expectations.exception.TestWithExceptiohn;
+import expectations.numeric.failures.LessThanComparisonFailure;
 import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
@@ -9,14 +9,14 @@ import static expectations.ExpectationFactory.expect;
 public class TestIsLessThan {
     @Test
     public void expectIsLessThanWithSmallerNumberToFail() throws Exception {
-        RunnableWithException test = () -> expect(2.0).toBeLessThan(1.0);
-        expect(test).toThrow(ComparisonMismatch.class).withMessage("Expected: 2.0 < 1.0");
+        TestWithExceptiohn test = () -> expect(2.0).toBeLessThan(1.0);
+        expect(test).toThrow(LessThanComparisonFailure.class).withMessage("Expected: 2.0 < 1.0");
     }
 
     @Test
     public void expectIsLessThanWithEqualNumberToFail() throws Exception {
-        RunnableWithException test = () -> expect(2.0).toBeLessThan(2.0);
-        expect(test).toThrow(ComparisonMismatch.class).withMessage("Expected: 2.0 < 2.0");
+        TestWithExceptiohn test = () -> expect(2.0).toBeLessThan(2.0);
+        expect(test).toThrow(LessThanComparisonFailure.class).withMessage("Expected: 2.0 < 2.0");
     }
 
     @Test

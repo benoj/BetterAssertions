@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class TestWithMessage {
 
     private final String exceptionMessage = "Hello World";
-    private final RunnableWithException fn = () -> { throw new Exception(exceptionMessage);};
+    private final TestWithExceptiohn fn = () -> { throw new Exception(exceptionMessage);};
 
     @Test
     public void expectWithMessageToPassWhenMessageIsCorrect() throws Exception {
@@ -19,7 +19,7 @@ public class TestWithMessage {
 
     @Test
     public void expectWithMessageThrowsExpectationMismatchWhenMessagesDoNotMatch() throws Exception {
-        RunnableWithException test = () -> expect(fn).toThrow(Exception.class).withMessage("Bonjour le monde");
+        TestWithExceptiohn test = () -> expect(fn).toThrow(Exception.class).withMessage("Bonjour le monde");
         expect(test).toThrow(ExpectationMismatch.class);
     }
 

@@ -1,6 +1,6 @@
 package expectations.numeric;
 
-import expectations.exception.RunnableWithException;
+import expectations.exception.TestWithExceptiohn;
 import expectations.numeric.failures.InclusiveIntervalFailure;
 import org.junit.Test;
 
@@ -24,13 +24,13 @@ public class TestToBeWithin {
 
     @Test
     public void expectToBeWithinWithNumberBelowIntervalToFail() throws Exception {
-        RunnableWithException test = () -> expect(3.1).toBeWithin(3.2, 3.3);
+        TestWithExceptiohn test = () -> expect(3.1).toBeWithin(3.2, 3.3);
         expect(test).toThrow(InclusiveIntervalFailure.class).withMessage("Expected: 3.1 in (3.2,3.3)");
     }
 
     @Test
     public void expectToBeWithinWithNumberAboveIntervalToFail() throws Exception {
-        RunnableWithException test = () -> expect(6).toBeWithin(4, 5);
+        TestWithExceptiohn test = () -> expect(6).toBeWithin(4, 5);
         expect(test).toThrow(InclusiveIntervalFailure.class).withMessage("Expected: 6 in (4,5)");
     }
 

@@ -1,7 +1,7 @@
 package expectations.numeric;
 
-import expectations.exception.RunnableWithException;
-import expectations.numeric.failures.ComparisonMismatch;
+import expectations.exception.TestWithExceptiohn;
+import expectations.numeric.failures.EqualityComparisonFailure;
 import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
@@ -15,8 +15,8 @@ public class TestToEqual {
 
     @Test
     public void expectToEqualWithNonEqualIntegersToFail() throws Exception {
-        RunnableWithException test = () -> expect(1).toEqual(2);
-        expect(test).toThrow(ComparisonMismatch.class).withMessage("Expected: 1 == 2");
+        TestWithExceptiohn test = () -> expect(1).toEqual(2);
+        expect(test).toThrow(EqualityComparisonFailure.class).withMessage("Expected: 1 == 2");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class TestToEqual {
 
     @Test
     public void expectToEqualWithNonEqualIDoubleToFail() throws Exception {
-        RunnableWithException test = () -> expect(1.0).toEqual(2.0);
-        expect(test).toThrow(ComparisonMismatch.class).withMessage("Expected: 1.0 == 2.0");
+        TestWithExceptiohn test = () -> expect(1.0).toEqual(2.0);
+        expect(test).toThrow(EqualityComparisonFailure.class).withMessage("Expected: 1.0 == 2.0");
     }
 }

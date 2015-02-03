@@ -1,63 +1,62 @@
 package expectations.numeric;
 
-import expectations.numeric.failures.InclusiveIntervalFailure;
-import expectations.numeric.failures.ComparisonMismatch;
-import expectations.numeric.failures.ExclusiveIntervalFailure;
+import expectations.numeric.failures.*;
 
 
 public class NumericExpectation<T extends Comparable<Number>> {
-    private T actual;
-
-
+    private NumericComparison comparison;
+    private Number actual;
+    
     @SuppressWarnings("unchecked")
     public NumericExpectation(Number value) {
-        actual = (T) value;
+        actual =  value;
+        comparison = new NumericComparison((T) actual);
     }
 
-    public void toEqual(Number expected) throws ComparisonMismatch {
-        if (!this.actual.equals(expected)) {
-            throw new ComparisonMismatch((Number) this.actual, expected, "==");
+    public void toEqual(Number expected) throws EqualityComparisonFailure {
+        if (!comparison.equalTo(expected)) {
+            throw new EqualityComparisonFailure(actual, expected);
         }
     }
 
-    public NumericExpectation<T> toBeGreaterThan(Number other) throws ComparisonMismatch {
+    public NumericExpectation<T> toBeGreaterThan(Number other) throws GreaterThanComparisonFailure {
 
-        if (actual.compareTo(other) <= 0) {
-            throw new ComparisonMismatch((Number) actual, other, ">");
-        }
-        return this;
-    }
-
-    public NumericExpectation<T> toBeLessThan(Number other) throws ComparisonMismatch {
-        if (actual.compareTo(other) >= 0) {
-            throw new ComparisonMismatch((Number) actual, other, "<");
+        if (comparison.lessThanOrEqualTo(other)){
+            throw new GreaterThanComparisonFailure(actual, other);
         }
         return this;
     }
 
-    public void toBeGreaterThanOrEqualTo(Number other) throws ComparisonMismatch {
-        if (actual.compareTo(other) < 0) {
-            throw new ComparisonMismatch((Number) actual, other, ">=");
+    public NumericExpectation<T> toBeLessThan(Number other) throws LessThanComparisonFailure {
+        if (comparison.greaterThanOrEqualTo(other)) {
+            throw new LessThanComparisonFailure(actual, other);
+        }
+        return this;
+    }
+
+    public void toBeGreaterThanOrEqualTo(Number other) throws GreaterThanOrEqualComparisonFailure {
+        if (comparison.lessThan(other)) {
+            throw new GreaterThanOrEqualComparisonFailure(actual, other);
         }
     }
 
-    public void toBeLessThanOrEqualTo(Number other) throws ComparisonMismatch {
-        if (actual.compareTo(other) > 0) {
-            throw new ComparisonMismatch((Number) actual, other, "<=");
+    public void toBeLessThanOrEqualTo(Number other) throws LessThanOrEqualComparisonFailure {
+        if (comparison.greaterThan(other)) {
+            throw new LessThanOrEqualComparisonFailure(actual, other);
         }
     }
 
     public void toBeWithin(Number boundA, Number boundB) throws InclusiveIntervalFailure {
         Interval interval = new Interval(boundA, boundB);
-        if (actual.compareTo(interval.getLowerBound()) < 0 || actual.compareTo(interval.getUpperBound()) > 0) {
+        if (comparison.lessThan(interval.getLowerBound()) || comparison.greaterThan(interval.getUpperBound())) {
             throw new InclusiveIntervalFailure(actual, interval);
         }
     }
 
     public void toBeBetween(Number boundA, Number boundB) throws ExclusiveIntervalFailure {
         Interval interval = new Interval(boundA, boundB);
-        if (actual.compareTo(interval.getLowerBound()) <= 0 || actual.compareTo(interval.getUpperBound()) >= 0) {
-            throw new ExclusiveIntervalFailure(actual, interval);
+        if (comparison.lessThanOrEqualTo(interval.getLowerBound()) || comparison.greaterThanOrEqualTo(interval.getUpperBound())) {
+            throw new ExclusiveIntervalFailure(actual,interval);
         }
     }
 }

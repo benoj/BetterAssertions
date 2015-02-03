@@ -1,6 +1,6 @@
-package expectations.exception.failures;
+package expectations.exception.failures.messageBuilders;
 
-class ExpectationMismatchMessageBuilder {
+public class ExpectationMismatchMessageBuilder {
     public static String build(Object actual, Object expected){
         return "Expected: " + expected + ", Actual: " + actual;
     }

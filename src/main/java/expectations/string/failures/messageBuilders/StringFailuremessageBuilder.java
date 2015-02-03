@@ -1,6 +1,6 @@
-package expectations.string.failures;
+package expectations.string.failures.messageBuilders;
 
-class StringFailureMessageBuilder {
+public class StringFailureMessageBuilder {
     public static String build(String actual, String expected, String condition){
         return "Expected: '" + actual + "' to " + condition + " '" + expected + "'";
     }

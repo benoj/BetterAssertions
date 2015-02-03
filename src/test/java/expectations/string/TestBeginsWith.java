@@ -1,6 +1,6 @@
 package expectations.string;
 
-import expectations.exception.RunnableWithException;
+import expectations.exception.TestWithExceptiohn;
 import expectations.string.failures.BeginsWithFailure;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class TestBeginsWith {
     @Test
     public void expectBeginsWithWithoutStartingCharactersToFail() throws Exception {
         String expected = "World!";
-        RunnableWithException test = () -> expect(actual).beginsWith(expected);
+        TestWithExceptiohn test = () -> expect(actual).beginsWith(expected);
         String expectedFailureMessage = String.format("Expected: '%s' to begin with '%s'", actual,expected);
         expect(test).toThrow(BeginsWithFailure.class).withMessage(expectedFailureMessage);
     }

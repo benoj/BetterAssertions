@@ -1,6 +1,6 @@
-package expectations.numeric.failures;
+package expectations.numeric.failures.messageBuilder;
 
-class NumericExceptionMessageBuilder {
+public class NumericExceptionMessageBuilder {
 
     public static String build(Number actual,String operator,Number expected){
         return "Expected: " + actual + " " + operator + " " + expected;

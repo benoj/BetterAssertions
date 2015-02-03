@@ -1,12 +1,12 @@
 package expectations;
 
 import expectations.exception.ExpectationExceptionBuilder;
-import expectations.exception.RunnableWithException;
+import expectations.exception.TestWithExceptiohn;
 import expectations.numeric.NumericExpectation;
 import expectations.string.StringExpectation;
 
 public class ExpectationFactory {
-    public static ExpectationExceptionBuilder expect(RunnableWithException fn){
+    public static ExpectationExceptionBuilder expect(TestWithExceptiohn fn){
         return new ExpectationExceptionBuilder(fn);
     }
 
