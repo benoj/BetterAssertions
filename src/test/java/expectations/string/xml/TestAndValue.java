@@ -1,7 +1,6 @@
 package expectations.string.xml;
 
 import expectations.exception.TestWithException;
-import expectations.xml.failures.NoXmlFieldFailure;
 import expectations.xml.failures.NoXmlFieldWithValueFailure;
 import org.junit.Test;
 
