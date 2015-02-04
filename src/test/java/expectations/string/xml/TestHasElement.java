@@ -1,7 +1,7 @@
 package expectations.string.xml;
 
 import expectations.exception.TestWithException;
-import expectations.xml.failures.NoXmlElementFailure;
+import expectations.xml.failures.NoXmlFieldFailure;
 import org.junit.Test;
 
 import static expectations.ExpectationFactory.expect;
@@ -24,6 +24,6 @@ public class TestHasElement {
     public void expectHasElementToPassWhenXMLDoesNotHaveElement() throws Exception {
         String xml = "<record type=\"person\"><bob id=\"2345\">John Doe</bob></record>";
         TestWithException test = () -> expect(xml).isXml().withField("field");
-        expect(test).toThrow(NoXmlElementFailure.class).withMessage("Expected element 'field' to exist but it did not");
+        expect(test).toThrow(NoXmlFieldFailure.class).withMessage("Expected element 'field' to exist but it did not");
     }
 }

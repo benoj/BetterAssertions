@@ -1,7 +1,7 @@
 package expectations.xml;
 
 import expectations.string.failures.MalformedXmlFailure;
-import expectations.xml.failures.NoXmlElementFailure;
+import expectations.xml.failures.NoXmlFieldFailure;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.filter.ElementFilter;
@@ -22,11 +22,11 @@ public class XMLExpectation {
         } catch (IOException ignored) {}
     }
 
-    public FieldsExpectation withField(String fieldName) throws NoXmlElementFailure {
+    public FieldsExpectation withField(String fieldName) throws NoXmlFieldFailure {
         ElementFilter filter = new ElementFilter(fieldName);
         Iterator elementIterator = xml.getDescendants(filter);
         if(!elementIterator.hasNext()){
-            throw new NoXmlElementFailure(fieldName);
+            throw new NoXmlFieldFailure(fieldName);
         }
         return new FieldsExpectation(fieldName,elementIterator);
     }

@@ -1,7 +1,7 @@
 package expectations.xml.failures;
 
-public class NoXmlElementFailure extends Exception {
-    public NoXmlElementFailure(String fieldName) {
+public class NoXmlFieldFailure extends Exception {
+    public NoXmlFieldFailure(String fieldName) {
         super("Expected element '" + fieldName + "' to exist but it did not");
     }
 }

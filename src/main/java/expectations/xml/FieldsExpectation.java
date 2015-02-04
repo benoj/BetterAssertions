@@ -1,6 +1,8 @@
 package expectations.xml;
 
-import expectations.xml.failures.NoSuchXmlElement;
+import expectations.xml.failures.NoXmlFieldWithAttributeFailure;
+import expectations.xml.failures.NoXmlFieldFailure;
+import expectations.xml.failures.NoXmlFieldWithValueFailure;
 import org.jdom.Attribute;
 import org.jdom.Element;
 
@@ -15,18 +17,32 @@ public class FieldsExpectation {
         this.elementIterator = elementIterator;
     }
 
-    public void andAttribute(String id, String value) throws NoSuchXmlElement {
+    public void andAttribute(String id, String value) throws NoXmlFieldWithAttributeFailure {
         boolean isPresent = false;
         while(elementIterator.hasNext()){
             Element element = (Element) elementIterator.next();
             Attribute attribute = element.getAttribute(id);
-            if(value.equals(attribute.getValue())){
+            if(attribute != null && value.equals(attribute.getValue())){
                 isPresent = true;      
                 break;
             }
         }
         if(!isPresent){
-            throw new NoSuchXmlElement(fieldName,id,value);
+            throw new NoXmlFieldWithAttributeFailure(fieldName,id,value);
+        }
+    }
+
+    public void andValue(String value) throws NoXmlFieldWithValueFailure {
+        boolean isPresent = false;
+        while(elementIterator.hasNext()){
+            Element element = (Element) elementIterator.next();
+            if(value.equals(element.getValue())){
+                isPresent = true;
+                break;
+            }
+        }
+        if(!isPresent){
+            throw new NoXmlFieldWithValueFailure(fieldName,value);
         }
     }
 }
