@@ -22,12 +22,13 @@ public class FieldsExpectation {
         this.elementItemFinder = new ElementItemFinder(elementIterator);
     }
     
-    public void andAttribute(String id, String value) throws NoXmlFieldWithAttributeFailure {
+    public XMLExpectation andAttribute(String id, String value) throws NoXmlFieldWithAttributeFailure {
         final AttributeStrategy strategy = new AttributeStrategy(id);
         Element element = new ElementItemFinder(elementIterator).getElement(value, strategy);
         if(element == null){
             throw new NoXmlFieldWithAttributeFailure(fieldName,id,value);
         }
+        return xmlRoot;
     }
 
     public XMLExpectation andValue(String value) throws NoXmlFieldWithValueFailure {

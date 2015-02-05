@@ -27,4 +27,13 @@ public class TestAndAttribute {
         TestWithException test = () -> expect(xml).isXml().withField("field").andAttribute("id","123");
         expect(test).toThrow(NoXmlFieldWithAttributeFailure.class).withMessage("Expected XML element 'field' with attribute 'id=123'");
     }
+
+    @Test
+    public void expectWithValueIsChainableBackToTheDocumentRoot() throws Exception {
+        String xml = "<record type=\"person\"><home id=\"2345\">Jonnie Doe</home><work>John Doe</work></record>";
+        expect(xml)
+                .isXml()
+                .withField("work").andValue("John Doe")
+                .withField("home").andValue("Jonnie Doe");
+    }
 }
