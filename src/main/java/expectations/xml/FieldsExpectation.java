@@ -2,42 +2,47 @@ package expectations.xml;
 
 import expectations.xml.elementItem.AttributeStrategy;
 import expectations.xml.elementItem.ElementItemFinder;
+import expectations.xml.elementItem.ElementItemFinderFactory;
 import expectations.xml.elementItem.ValueStrategy;
+import expectations.xml.failures.NoXmlFieldFailure;
 import expectations.xml.failures.NoXmlFieldWithAttributeFailure;
 import expectations.xml.failures.NoXmlFieldWithValueFailure;
 import org.jdom.Element;
 
-import java.util.Iterator;
+import java.util.List;
 
 public class FieldsExpectation {
     final private String fieldName;
-    final private Iterator elementIterator;
     final private XMLExpectation xmlRoot;
-    final private ElementItemFinder elementItemFinder;
+    final private ElementItemFinderFactory elementItemFinderFactory;
 
-    public FieldsExpectation(String fieldName, Iterator elementIterator, XMLExpectation xmlRoot) {
+    public FieldsExpectation(String fieldName, List elements, XMLExpectation xmlRoot) {
         this.fieldName = fieldName;
-        this.elementIterator = elementIterator;
         this.xmlRoot = xmlRoot;
-        this.elementItemFinder = new ElementItemFinder(elementIterator);
+        this.elementItemFinderFactory = new ElementItemFinderFactory(elements);
     }
     
-    public XMLExpectation andAttribute(String id, String value) throws NoXmlFieldWithAttributeFailure {
+    public FieldsExpectation andAttribute(String id, String value) throws NoXmlFieldWithAttributeFailure {
         final AttributeStrategy strategy = new AttributeStrategy(id);
-        Element element = new ElementItemFinder(elementIterator).getElement(value, strategy);
+        final ElementItemFinder elementItemFinder = elementItemFinderFactory.create();
+        Element element = elementItemFinder.getElement(value, strategy);
         if(element == null){
             throw new NoXmlFieldWithAttributeFailure(fieldName,id,value);
         }
-        return xmlRoot;
+        return this;
+    }
+    
+    public FieldsExpectation withField(String fieldName) throws NoXmlFieldFailure {
+        return xmlRoot.withField(fieldName);
     }
 
     public XMLExpectation andValue(String value) throws NoXmlFieldWithValueFailure {
         final ValueStrategy strategy = new ValueStrategy();
+        final ElementItemFinder elementItemFinder = elementItemFinderFactory.create();
         Element actualElement = elementItemFinder.getElement(value, strategy);
         if(actualElement == null){
             throw new NoXmlFieldWithValueFailure(fieldName,value);
         }
-        
         return xmlRoot;
     }
 }

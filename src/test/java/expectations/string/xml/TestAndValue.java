@@ -22,10 +22,12 @@ public class TestAndValue {
 
     @Test
     public void expectWithValueIsChainableBackToTheDocumentRoot() throws Exception {
-        String xml = "<record type=\"person\"><name type=\"home\">Jonnie Doe</name><name type=\"work\">John Doe</name></record>";
+        String xml = "<record type=\"person\"><home id=\"2345\">Jonnie Doe</home><work>John Doe</work></record>";
         expect(xml)
                 .isXml()
-                .withField("name").andAttribute("type","home")
-                .withField("name").andAttribute("type","work");
+                .withField("work").andValue("John Doe")
+                .withField("home").andValue("Jonnie Doe");
     }
+
+
 }
