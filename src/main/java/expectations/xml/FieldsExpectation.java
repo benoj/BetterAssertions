@@ -12,11 +12,13 @@ import java.util.Iterator;
 public class FieldsExpectation {
     final private String fieldName;
     final private Iterator elementIterator;
+    final private XMLExpectation xmlRoot;
     final private ElementItemFinder elementItemFinder;
 
-    public FieldsExpectation(String fieldName, Iterator elementIterator) {
+    public FieldsExpectation(String fieldName, Iterator elementIterator, XMLExpectation xmlRoot) {
         this.fieldName = fieldName;
         this.elementIterator = elementIterator;
+        this.xmlRoot = xmlRoot;
         this.elementItemFinder = new ElementItemFinder(elementIterator);
     }
     
@@ -28,12 +30,14 @@ public class FieldsExpectation {
         }
     }
 
-    public void andValue(String value) throws NoXmlFieldWithValueFailure {
+    public XMLExpectation andValue(String value) throws NoXmlFieldWithValueFailure {
         final ValueStrategy strategy = new ValueStrategy();
         Element actualElement = elementItemFinder.getElement(value, strategy);
         if(actualElement == null){
             throw new NoXmlFieldWithValueFailure(fieldName,value);
         }
+        
+        return xmlRoot;
     }
 }
 

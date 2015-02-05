@@ -28,6 +28,6 @@ public class XMLExpectation {
         if(!elementIterator.hasNext()){
             throw new NoXmlFieldFailure(fieldName);
         }
-        return new FieldsExpectation(fieldName,elementIterator);
+        return new FieldsExpectation(fieldName,elementIterator,this);
     }
 }
