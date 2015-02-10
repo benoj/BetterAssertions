@@ -29,24 +29,23 @@ public class TestAndAttribute {
     }
 
     @Test
-    public void expectAndAttributeIsChainableBackToTheDocumentRoot() throws Exception {
+    public void expectAndAttributeIsChainableBackToAndWithField() throws Exception {
         String xml = "<record type=\"person\"><name type=\"home\">Jonnie Doe</name><name type=\"work\">John Doe</name></record>";
         expect(xml)
                 .isXml()
-                .withField("name").andAttribute("type","home")
-                .withField("name").andAttribute("type","work");
+                    .withField("name").andAttribute("type","home")
+                    .andWithField("name").andAttribute("type","work");
     }
 
 
     @Test
     public void expectAndAttributeIsChainableBackWithMultipleAttributes() throws Exception {
-        String xml = "<record><worker id=\"1234\" role=\"Software Developer\">Jonnie Doe</worker></record>";
-        expect(xml)
+        String result = "<record><worker id=\"1234\" role=\"Software Developer\">Jonnie Doe</worker></record>";
+        expect(result)
                 .isXml()
                     .withField("worker")
                         .andAttribute("id", "1234")
                         .andAttribute("role", "Software Developer");
     }
 
-   
 }

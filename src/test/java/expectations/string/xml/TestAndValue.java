@@ -25,9 +25,10 @@ public class TestAndValue {
         String xml = "<record type=\"person\"><home id=\"2345\">Jonnie Doe</home><work>John Doe</work></record>";
         expect(xml)
                 .isXml()
-                .withField("work").andValue("John Doe")
-                .withField("home").andValue("Jonnie Doe");
+                    .withField("work").andValue("John Doe")
+                    .withField("home").andValue("Jonnie Doe");
     }
-
-
+    
+    
+    
 }

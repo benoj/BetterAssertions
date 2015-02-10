@@ -22,6 +22,8 @@ public class XMLExpectation {
         } catch (IOException ignored) {}
     }
 
+
+
     public FieldsExpectation withField(String fieldName) throws NoXmlFieldFailure {
         List elementList = xml.getChildren(fieldName);
         if(elementList.isEmpty()){
@@ -29,4 +31,5 @@ public class XMLExpectation {
         }
         return new FieldsExpectation(fieldName, elementList,this);
     }
+
 }
